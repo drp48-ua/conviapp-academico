@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ConviApp — Gestión inteligente de piso compartido. Tareas, gastos, reservas y comunicación en una sola plataforma." />
+    <title>@ViewData["Title"] - ConviApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <!-- ═══ FIXED HEADER ═══ -->
+    <header class="header">
+        <div class="header-top container" style="max-width:100%; width:100%">
+            <a href="/" class="logo" style="color: white;">
+                <div class="logo-icon" style="background:white; color:var(--primary); font-size:1.5rem">🏠</div>
+                ConviApp
+            </a>
+            
+            <div style="flex:1; max-width:600px; margin: 0 40px; display:flex; align-items:center; background:rgba(255,255,255,0.9); border-radius:100px; padding:8px 16px;">
+                <span style="color:#6b7280; margin-right:8px">🔍</span>
+                <input type="text" placeholder="Buscar pisos, gastos, tareas..." style="border:none; background:transparent; width:100%; outline:none; color:#111827">
+            </div>
+
+            <div class="header-actions">
+                @if (Context.Session.GetString("UserEmail") != null)
+                {
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <!-- NOTIFICATIONS DROPDOWN -->
+                        <div style="position:relative;" id="notifDropdownWrap">
+                            <span style="color:white; font-size:1.2rem; position:relative; cursor:pointer;" onclick="toggleNotifs()">
+                                🔔
+                                <span id="notifBadge" style="position:absolute; top:-4px; right:-4px; background:#ef4444; width:10px; height:10px; border-radius:50%;"></span>
+                            </span>
+                            <div id="notifPopup" style="display:none; position:absolute; top:36px; right:0; width:300px; background:white; border-radius:8px; box-shadow:0 10px 25px rgba(0,0,0,0.1); border:1px solid #e5e7eb; overflow:hidden; z-index:100;">
+                                <div style="background:#f9fafb; padding:12px 16px; border-bottom:1px solid #e5e7eb; font-weight:600; color:#1f2937;">Notificaciones</div>
+                                <div id="notifList" style="max-height:300px; overflow-y:auto;">
+                                    <div style="padding:16px; text-align:center; color:#6b7280; font-size:0.85rem;" id="notifEmpty">No hay notificaciones nuevas</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROFILE AVATAR -->
+                        <svg width="36" height="36" viewBox="0 0 64 64" style="border-radius:50%;background:#c7d2fe;flex-shrink:0;" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="26" r="12" fill="#a5b4fc"/><ellipse cx="32" cy="50" rx="20" ry="14" fill="#818cf8"/></svg>
+                        
+                        <div style="color:white; font-size:0.9rem; line-height:1.2;">
+                            <div style="font-weight:600;">@(Context.Session.GetString("UserName") ?? Context.Session.GetString("UserEmail"))</div>
+                            <a href="/Account/Logout" style="color:var(--accent-light); font-size:0.8rem; text-decoration:none;">Cerrar sesión</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <a href="/Account/Register" class="btn btn-outline btn-sm" style="color:white; border-color:rgba(255,255,255,0.3);">Registrarse</a>
+                    <a href="/Account/Login" class="btn btn-sm" style="background:white; color:var(--primary); font-weight:600;">Acceder →</a>
+                }
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container" style="display:flex; gap:8px; width:100%; max-width:100%;">
+                <a href="/" class="nav-link active" id="navInicio">🏠 Inicio</a>
+                <a href="/Home/Pisos" class="nav-link">🏢 Pisos</a>
+                <a href="/?tab=contratos" class="nav-link" id="navContratos">📄 Contratos</a>
+                <a href="/?tab=tareas" class="nav-link" id="navTareas">✅ Tareas</a>
+                <a href="/?tab=gastos" class="nav-link" id="navGastos">💶 Gastos</a>
+                <a href="/?tab=reservas" class="nav-link" id="navReservas">📅 Reservas</a>
+                <a href="/?tab=mensajes" class="nav-link" id="navMensajes">✉️ Mensajes</a>
+                <a href="/?tab=perfil" class="nav-link" id="navPerfil">👤 Perfil</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ PAGE CONTENT ═══ -->
+    <div class="page-wrapper">
+        @RenderBody()
+    </div>
+
+    @{
+        var _layoutRole = Context.Session.GetString("UserRole") ?? "";
+        var _isLoggedInAd = Context.Session.GetString("UserEmail") != null;
+        var _showBottomAd = !_isLoggedInAd || _layoutRole == "Basico";
+    }
+    @if (_showBottomAd)
+    {
+        <div class="container" style="padding: 0 24px 20px;">
+            <div class="ad-slider-wrap ad-bottom">
+                <div class="ad-label">PUBLICIDAD</div>
+                <div class="ad-slider" id="adSliderB">
+                    <div class="ad-slide active"><span class="ad-slide-icon">🏪</span><div class="ad-slide-body"><strong style="color:#f59e0b;">Carrefour Online</strong><span class="ad-slide-text">-5% en tu primera compra del mes. Entrega en 2h para pisos compartidos</span></div><a href="#" class="btn btn-sm ad-cta-btn" style="border-color:#f59e0b;color:#f59e0b;">Ver oferta</a></div>
+                    <div class="ad-slide"><span class="ad-slide-icon">🧺</span><div class="ad-slide-body"><strong style="color:#06d6a0;">Lavandería24.es</strong><span class="ad-slide-text">Recogida y entrega de ropa en 24h. 3kg gratis el primer pedido</span></div><a href="#" class="btn btn-sm ad-cta-btn" style="border-color:#06d6a0;color:#06d6a0;">Probar</a></div>
+                    <div class="ad-slide"><span class="ad-slide-icon">🔑</span><div class="ad-slide-body"><strong style="color:#818cf8;">TuCerrajero.es</strong><span class="ad-slide-text">Duplicado de llaves a domicilio desde 9.90€. Disponible 24/7</span></div><a href="#" class="btn btn-sm ad-cta-btn" style="border-color:#818cf8;color:#818cf8;">Solicitar</a></div>
+                    <div class="ad-slide"><span class="ad-slide-icon">💇</span><div class="ad-slide-body"><strong style="color:#f87171;">Urban Wellness</strong><span class="ad-slide-text">Gimnasio compartido para pisos: 19.99€/mes. Incluye sauna y piscina</span></div><a href="#" class="btn btn-sm ad-cta-btn" style="border-color:#f87171;color:#f87171;">Apuntarse</a></div>
+                    <div class="ad-slide"><span class="ad-slide-icon">📚</span><div class="ad-slide-body"><strong style="color:#34d399;">Wuolah.com</strong><span class="ad-slide-text">Apuntes universitarios gratis. Comparte los tuyos y gana dinero</span></div><a href="#" class="btn btn-sm ad-cta-btn" style="border-color:#34d399;color:#34d399;">Entrar</a></div>
+                </div>
+                <div class="ad-dots" id="adDotsB">
+                    <span class="ad-dot active" onclick="goToAdB(0)"></span>
+                    <span class="ad-dot" onclick="goToAdB(1)"></span>
+                    <span class="ad-dot" onclick="goToAdB(2)"></span>
+                    <span class="ad-dot" onclick="goToAdB(3)"></span>
+                    <span class="ad-dot" onclick="goToAdB(4)"></span>
+                </div>
+                <div style="text-align:center;margin-top:8px;">
+                    <a href="/#planes" style="color:var(--text-muted);font-size:0.7rem;text-decoration:underline;">💎 Actualiza a Pro para eliminar publicidad</a>
+                </div>
+            </div>
+        </div>
+        <script>
+        (function(){
+            let curB=0;
+            const sB=document.querySelectorAll('#adSliderB .ad-slide');
+            const dB=document.querySelectorAll('#adDotsB .ad-dot');
+            function goToAdB(n){sB[curB].classList.remove('active');dB[curB].classList.remove('active');curB=(n+sB.length)%sB.length;sB[curB].classList.add('active');dB[curB].classList.add('active');}
+            window.goToAdB=goToAdB;
+            setInterval(()=>goToAdB(curB+1),5000);
+        })();
+        </script>
+    }
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo" style="font-size:1.2rem;">
+                        <div class="logo-icon" style="width:32px;height:32px;font-size:1rem;">🏠</div>
+                        ConviApp
+                    </a>
+                    <p>La plataforma definitiva para gestionar tu piso compartido. Tareas, gastos, reservas y comunicación en un solo lugar.</p>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul class="footer-links">
+                        <li><a href="/#funciones">Funciones</a></li>
+                        <li><a href="/Home/Pisos">Catálogo de Pisos</a></li>
+                        <li><a href="/#planes">Planes y Precios</a></li>
+                        <li><a href="/Account/Login">Acceder</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/Home/Privacidad">Privacidad</a></li>
+                        <li><a href="/Home/Terminos">Términos de Uso</a></li>
+                        <li><a href="/Home/Cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@conviapp.com">info@conviapp.com</a></li>
+                        <li><a href="#">Soporte</a></li>
+                        <li><a href="#">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 ConviApp. Todos los derechos reservados.</span>
+                <span>Hecho con ❤️ para convivir mejor</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        function toggleNotifs() {
+            var el = document.getElementById('notifPopup');
+            if (el.style.display === 'none') {
+                el.style.display = 'block';
+                document.getElementById('notifBadge').style.display = 'none'; // mark as read
+            } else {
+                el.style.display = 'none';
+            }
+        }
+        
+        // Mock notification system
+        window.addEventListener('DOMContentLoaded', () => {
+            const notifList = document.getElementById('notifList');
+            if (!notifList) return;
+            
+            function addNotification(icon, title, desc, time) {
+                document.getElementById('notifEmpty').style.display = 'none';
+                document.getElementById('notifBadge').style.display = 'block';
+                
+                const div = document.createElement('div');
+                div.style.cssText = "display:flex; gap:12px; padding:12px 16px; border-bottom:1px solid #f3f4f6; cursor:pointer;";
+                div.innerHTML = `
+                    <div style="font-size:1.5rem;">${icon}</div>
+                    <div>
+                        <div style="font-weight:600; font-size:0.9rem; color:#1f2937;">${title}</div>
+                        <div style="font-size:0.8rem; color:#6b7280; margin-top:2px;">${desc}</div>
+                        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">${time}</div>
+                    </div>
+                `;
+                notifList.insertBefore(div, notifList.firstChild);
+            }
+            
+            // Add welcome
+            setTimeout(() => {
+                addNotification('👋', '¡Bienvenido a ConviApp!', 'Te has registrado correctamente. Explora todas las funciones.', 'Hace un momento');
+            }, 1500);
+
+            // Add mock others if logged in periodically
+            if ('@(_isLoggedInAd)' === 'True') {
+                setTimeout(() => {
+                    addNotification('🏠', 'Nuevo piso en tu zona', 'Se ha añadido un piso compartido cerca de tu ubicación preferida.', 'Hace un momento');
+                }, 15000);
+            }
+        });
+        
+        // Close clicking outside
+        document.addEventListener('click', (e) => {
+            const wrap = document.getElementById('notifDropdownWrap');
+            if (wrap && !wrap.contains(e.target)) {
+                document.getElementById('notifPopup').style.display = 'none';
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

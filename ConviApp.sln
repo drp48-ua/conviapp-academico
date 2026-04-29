@@ -2,10 +2,15 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
+
+# ─── 1_Datos: Librería de Entidades (EN) y Acceso a Datos (CAD) ───
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_Datos", "1_Datos\Library.csproj", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConviAppWeb", "ConviAppWeb\ConviAppWeb.csproj", "{B2C3D4E5-F6A7-8901-BCDE-F12345678901}"
+
+# ─── 3_Aplicacion: Aplicación web ASP.NET Core MVC completa ───
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_Aplicacion", "3_Aplicacion\ConviAppWeb.csproj", "{B2C3D4E5-F6A7-8901-BCDE-F12345678901}"
 EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
