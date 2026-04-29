@@ -1,9 +1,0 @@
-*.user
-*.suo
-.vs/
-bin/
-obj/
-*.log
-conviapp.db
-conviapp.db-shm
-conviapp.db-wal
