@@ -35,7 +35,7 @@ namespace ConviAppWeb.Models
         public string Ciudad { get { return _ciudad; } set { _ciudad = value; } }
 
         [MaxLength(10)]
-        public string? CodigoPostal { get { return _codigoPostal; } set { _codigoPostal = value; } }
+        public string CodigoPostal { get { return _codigoPostal; } set { _codigoPostal = value; } }
 
         [Range(1, 20)]
         public int NumeroHabitaciones { get { return _numeroHabitaciones; } set { _numeroHabitaciones = value; } }
@@ -47,11 +47,11 @@ namespace ConviAppWeb.Models
         public decimal PrecioTotal { get { return _precioTotal; } set { _precioTotal = value; } }
 
         [MaxLength(2000)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         public bool Disponible { get { return _disponible; } set { _disponible = value; } }
 
-        public string? Caracteristicas { get { return _caracteristicas; } set { _caracteristicas = value; } }
+        public string Caracteristicas { get { return _caracteristicas; } set { _caracteristicas = value; } }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
         public ICollection<ENHabitacion> Habitaciones { get; set; }
@@ -63,5 +63,7 @@ namespace ConviAppWeb.Models
         public ENPiso() { _disponible = true; }
     }
 }
+
+
 
 

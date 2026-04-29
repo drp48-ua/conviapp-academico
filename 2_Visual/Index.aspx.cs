@@ -42,7 +42,7 @@ public partial class Index : System.Web.UI.Page
 
         // Tareas pendientes (CADTarea – modo desconectado)
         var cadTarea = new CADTarea();
-        var tareas   = cadTarea.ListarTodos();
+        var tareas   = cadTarea.ListarTodas();
         lblNumTareas.Text = tareas.Count.ToString();
     }
 

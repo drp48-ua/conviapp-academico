@@ -32,14 +32,14 @@ namespace ConviAppWeb.Models
         public string Estado { get { return _estado; } set { _estado = value; } } // pendiente, confirmada, cancelada
 
         [MaxLength(300)]
-        public string? Motivo { get { return _motivo; } set { _motivo = value; } }
+        public string Motivo { get { return _motivo; } set { _motivo = value; } }
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int UsuarioId { get { return _usuarioId; } set { _usuarioId = value; } }
-        public ENUsuario? Usuario { get; set; }
+        public ENUsuario Usuario { get; set; }
 
         public int ZonaComunId { get { return _zonaComunId; } set { _zonaComunId = value; } }
-        public ENZonaComun? ZonaComun { get; set; }
+        public ENZonaComun ZonaComun { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool EsActiva() { return _estado == "confirmada" && _fechaFin >= DateTime.Now; }
@@ -49,5 +49,7 @@ namespace ConviAppWeb.Models
         public ENReserva() { _estado = "pendiente"; }
     }
 }
+
+
 
 

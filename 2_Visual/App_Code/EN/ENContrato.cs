@@ -69,7 +69,7 @@ namespace ConviAppWeb.Models
             get { return _status; } set { _status = value; }
         } // activo, vencido, cancelado
 
-        public string? Notes
+        public string Notes
         {
             get { return _notes; } set { _notes = value; }
         }
@@ -120,5 +120,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

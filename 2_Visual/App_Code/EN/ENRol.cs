@@ -26,7 +26,7 @@ namespace ConviAppWeb.Models
         public string Nombre { get { return _nombre; } set { _nombre = value; } } // inquilino, administrador, propietario
 
         [MaxLength(250)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         public bool PuedeGestionarPisos { get { return _puedeGestionarPisos; } set { _puedeGestionarPisos = value; } }
         public bool PuedeVerContratos { get { return _puedeVerContratos; } set { _puedeVerContratos = value; } }
@@ -38,5 +38,7 @@ namespace ConviAppWeb.Models
         public bool EsInquilino() { return _nombre.ToLower() == "inquilino"; }
     }
 }
+
+
 
 

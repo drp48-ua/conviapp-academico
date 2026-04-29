@@ -63,7 +63,7 @@ namespace ConviAppWeb.Models
             get { return _uploadDate; } set { _uploadDate = value; }
         }
 
-        public string? Description
+        public string Description
         {
             get { return _description; } set { _description = value; }
         }
@@ -73,7 +73,7 @@ namespace ConviAppWeb.Models
         {
             get { return _contratoId; } set { _contratoId = value; }
         }
-        public ENContrato? Contrato { get; set; }
+        public ENContrato Contrato { get; set; }
 
         public int? PropertyId
         {
@@ -91,8 +91,8 @@ namespace ConviAppWeb.Models
         public string FileSizeFormatted()
         {
             if (_fileSize < 1024) return _fileSize + " B";
-            if (_fileSize < 1048576) return _fileSize / 1024.0:F1 + " KB";
-            return _fileSize / 1048576.0:F1 + " MB";
+            if (_fileSize < 1048576) return (_fileSize / 1024.0).ToString("F1") + " KB";
+            return (_fileSize / 1048576.0).ToString("F1") + " MB";
         }
 
         public bool IsPdf() { return _contentType == "application/pdf"; }
@@ -106,5 +106,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

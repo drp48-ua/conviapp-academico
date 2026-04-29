@@ -27,7 +27,7 @@ namespace ConviAppWeb.Models
         public string Url { get { return _url; } set { _url = value; } }
 
         [MaxLength(200)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         public bool EsPrincipal { get { return _esPrincipal; } set { _esPrincipal = value; } }
 
@@ -43,5 +43,7 @@ namespace ConviAppWeb.Models
         public ENImagen() { _fechaSubida = DateTime.Now; }
     }
 }
+
+
 
 

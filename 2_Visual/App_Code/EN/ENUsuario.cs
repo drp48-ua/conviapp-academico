@@ -43,7 +43,7 @@ namespace ConviAppWeb.Models
 
         [Phone]
         [MaxLength(20)]
-        public string? Telefono { get { return _telefono; } set { _telefono = value; } }
+        public string Telefono { get { return _telefono; } set { _telefono = value; } }
 
         public DateTime FechaRegistro { get { return _fechaRegistro; } set { _fechaRegistro = value; } }
 
@@ -51,10 +51,10 @@ namespace ConviAppWeb.Models
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int RolId { get { return _rolId; } set { _rolId = value; } }
-        public ENRol? Rol { get; set; }
+        public ENRol Rol { get; set; }
 
         public int? SuscripcionId { get { return _suscripcionId; } set { _suscripcionId = value; } }
-        public ENSuscripcion? Suscripcion { get; set; }
+        public ENSuscripcion Suscripcion { get; set; }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
         public ICollection<ENContrato> Contratos { get; set; }
@@ -71,5 +71,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

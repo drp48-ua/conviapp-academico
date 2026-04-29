@@ -32,18 +32,18 @@ namespace ConviAppWeb.Models
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int EmisorId { get { return _emisorId; } set { _emisorId = value; } }
-        public ENUsuario? Emisor { get; set; }
+        public ENUsuario Emisor { get; set; }
 
         public int? ReceptorId { get { return _receptorId; } set { _receptorId = value; } }
-        public ENUsuario? Receptor { get; set; }
+        public ENUsuario Receptor { get; set; }
 
         public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
-        public ENPiso? Piso { get; set; }
+        public ENPiso Piso { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool EsMensajeGrupal() { return _pisoId.HasValue && !_receptorId.HasValue; }
         public bool EsMensajePrivado() { return _receptorId.HasValue; }
-        public void MarcarComoLeido() { return _leido = true; }
+        public void MarcarComoLeido() { _leido = true; }
 
         public ENMensaje()
         {
@@ -52,5 +52,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

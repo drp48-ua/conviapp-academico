@@ -34,14 +34,23 @@ public partial class Pisos : System.Web.UI.Page
 
     protected void BtnGuardarPiso_Click(object sender, EventArgs e)
     {
+        int h;
+        if (!int.TryParse(txtHabitaciones.Text, out h) || h == 0) h = 1;
+
+        int b;
+        if (!int.TryParse(txtBanos.Text, out b) || b == 0) b = 1;
+
+        decimal p;
+        decimal.TryParse(txtPrecio.Text, out p);
+
         var nuevoPiso = new ENPiso
         {
             Direccion          = txtDireccion.Text.Trim(),
             Ciudad             = txtCiudad.Text.Trim(),
             CodigoPostal       = txtCodPostal.Text.Trim(),
-            NumeroHabitaciones = int.TryParse(txtHabitaciones.Text, out int h) ? h : 1,
-            NumeroBanos        = int.TryParse(txtBanos.Text, out int b) ? b : 1,
-            PrecioTotal        = decimal.TryParse(txtPrecio.Text, out decimal p) ? p : 0m,
+            NumeroHabitaciones = h,
+            NumeroBanos        = b,
+            PrecioTotal        = p,
             Disponible         = true
         };
 

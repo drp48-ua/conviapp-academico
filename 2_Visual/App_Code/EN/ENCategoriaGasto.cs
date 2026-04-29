@@ -25,17 +25,19 @@ namespace ConviAppWeb.Models
         public string Nombre { get { return _nombre; } set { _nombre = value; } }
 
         [MaxLength(300)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         [MaxLength(50)]
-        public string? Icono { get { return _icono; } set { _icono = value; } }
+        public string Icono { get { return _icono; } set { _icono = value; } }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
         public ICollection<ENGasto> Gastos { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
-        public int TotalGastos() { return Gastos.Count ?? 0; }
+        public int TotalGastos() { return Gastos != null ? Gastos.Count : 0; }
     }
 }
+
+
 
 

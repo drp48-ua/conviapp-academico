@@ -29,7 +29,7 @@ namespace ConviAppWeb.DataAccess
                     nueva["tipo"] = en.Tipo ?? (object)DBNull.Value;
                     nueva["leida"] = en.Leida ? 1 : 0;
                     nueva["fecha_creacion"] = en.FechaCreacion.ToString("o");
-                    nueva["fecha_lectura"] = en.FechaLectura.ToString("o") ?? (object)DBNull.Value;
+                    nueva["fecha_lectura"] = en.FechaLectura.HasValue ? (object)en.FechaLectura.Value.ToString("o") : (object)DBNull.Value;
                     nueva["usuario_id"] = en.UsuarioId;
                     t.Rows.Add(nueva);
 
@@ -101,7 +101,7 @@ namespace ConviAppWeb.DataAccess
                         filas[0]["tipo"] = en.Tipo ?? (object)DBNull.Value;
                         filas[0]["leida"] = en.Leida ? 1 : 0;
                         filas[0]["fecha_creacion"] = en.FechaCreacion.ToString("o");
-                        filas[0]["fecha_lectura"] = en.FechaLectura.ToString("o") ?? (object)DBNull.Value;
+                        filas[0]["fecha_lectura"] = en.FechaLectura.HasValue ? (object)en.FechaLectura.Value.ToString("o") : (object)DBNull.Value;
                         filas[0]["usuario_id"] = en.UsuarioId;
 
                         SQLiteCommandBuilder cb = new SQLiteCommandBuilder(da);
@@ -148,5 +148,7 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
+
 
 

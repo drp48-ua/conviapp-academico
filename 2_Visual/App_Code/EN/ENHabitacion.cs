@@ -40,7 +40,7 @@ namespace ConviAppWeb.Models
         public bool TieneBano { get { return _tieneBano; } set { _tieneBano = value; } }
 
         [MaxLength(1000)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         // â”€â”€â”€ Clave forÃ¡nea â”€â”€â”€
         public int PisoId { get { return _pisoId; } set { _pisoId = value; } }
@@ -50,5 +50,7 @@ namespace ConviAppWeb.Models
         public string DescripcionCorta() { return "Hab. {_numero} â€” {_precio:C}/mes â€” " + _metros + "mÂ²"; }
     }
 }
+
+
 
 

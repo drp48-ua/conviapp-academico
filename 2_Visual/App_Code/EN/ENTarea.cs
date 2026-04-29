@@ -30,7 +30,7 @@ namespace ConviAppWeb.Models
         public string Titulo { get { return _titulo; } set { _titulo = value; } }
 
         [MaxLength(1000)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         [Required]
         public string Estado { get { return _estado; } set { _estado = value; } } // pendiente, en_progreso, completada
@@ -44,13 +44,13 @@ namespace ConviAppWeb.Models
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int CreadaPorId { get { return _creadaPorId; } set { _creadaPorId = value; } }
-        public ENUsuario? CreadaPor { get; set; }
+        public ENUsuario CreadaPor { get; set; }
 
         public int? AsignadaAId { get { return _asignadaAId; } set { _asignadaAId = value; } }
-        public ENUsuario? AsignadaA { get; set; }
+        public ENUsuario AsignadaA { get; set; }
 
         public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
-        public ENPiso? Piso { get; set; }
+        public ENPiso Piso { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool EstaCompletada() { return _estado == "completada"; }
@@ -64,5 +64,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

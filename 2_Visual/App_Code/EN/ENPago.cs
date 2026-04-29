@@ -54,12 +54,12 @@ namespace ConviAppWeb.Models
             get { return _status; } set { _status = value; }
         } // pagado, pendiente, rechazado
 
-        public string? Concept
+        public string Concept
         {
             get { return _concept; } set { _concept = value; }
         } // Alquiler Abril, DepÃ³sito, etc.
 
-        public string? Reference
+        public string Reference
         {
             get { return _reference; } set { _reference = value; }
         } // Referencia bancaria
@@ -69,7 +69,7 @@ namespace ConviAppWeb.Models
         {
             get { return _contratoId; } set { _contratoId = value; }
         }
-        public ENContrato? Contrato { get; set; }
+        public ENContrato Contrato { get; set; }
 
         public int UserId
         {
@@ -90,5 +90,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

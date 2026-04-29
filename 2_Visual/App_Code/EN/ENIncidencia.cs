@@ -44,13 +44,13 @@ namespace ConviAppWeb.Models
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int ReportadaPorId { get { return _reportadaPorId; } set { _reportadaPorId = value; } }
-        public ENUsuario? ReportadaPor { get; set; }
+        public ENUsuario ReportadaPor { get; set; }
 
         public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
-        public ENPiso? Piso { get; set; }
+        public ENPiso Piso { get; set; }
 
         public int? HabitacionId { get { return _habitacionId; } set { _habitacionId = value; } }
-        public ENHabitacion? Habitacion { get; set; }
+        public ENHabitacion Habitacion { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool EstaResuelta() { return _estado == "resuelta"; }
@@ -67,5 +67,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

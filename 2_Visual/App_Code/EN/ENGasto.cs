@@ -39,17 +39,17 @@ namespace ConviAppWeb.Models
         public bool Pagado { get { return _pagado; } set { _pagado = value; } }
 
         [MaxLength(500)]
-        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int RegistradoPorId { get { return _registradoPorId; } set { _registradoPorId = value; } }
-        public ENUsuario? RegistradoPor { get; set; }
+        public ENUsuario RegistradoPor { get; set; }
 
         public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
-        public ENPiso? Piso { get; set; }
+        public ENPiso Piso { get; set; }
 
         public int? CategoriaId { get { return _categoriaId; } set { _categoriaId = value; } }
-        public ENCategoriaGasto? Categoria { get; set; }
+        public ENCategoriaGasto Categoria { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool EstaPagado() { return _pagado; }
@@ -62,5 +62,7 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
+
 
 

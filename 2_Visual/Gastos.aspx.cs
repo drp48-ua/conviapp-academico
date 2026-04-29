@@ -42,12 +42,18 @@ public partial class Gastos : System.Web.UI.Page
     {
         int userId = (int?)Session["UserId"] ?? 1;
 
+        decimal imp;
+        decimal.TryParse(txtImporte.Text, out imp);
+        
+        DateTime f;
+        if (!DateTime.TryParse(txtFecha.Text, out f)) f = DateTime.Today;
+
         var nuevoGasto = new ENGasto
         {
             Concepto        = txtConcepto.Text.Trim(),
-            Importe         = decimal.TryParse(txtImporte.Text, out decimal imp) ? imp : 0m,
+            Importe         = imp,
             Descripcion     = txtDescripcion.Text.Trim(),
-            Fecha           = DateTime.TryParse(txtFecha.Text, out DateTime f) ? f : DateTime.Today,
+            Fecha           = f,
             RegistradoPorId = userId,
             Pagado          = false
         };
@@ -67,7 +73,8 @@ public partial class Gastos : System.Web.UI.Page
 
     protected void GvGastos_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
     {
-        if (e.CommandName == "Pagar" && e.CommandArgument != null && int.TryParse(e.CommandArgument.ToString(), out int id))
+        int id;
+        if (e.CommandName == "Pagar" && e.CommandArgument != null && int.TryParse(e.CommandArgument.ToString(), out id))
         {
             // TODO: marcar gasto como pagado usando CADGasto.ActualizarGasto()
             CargarGastos();
