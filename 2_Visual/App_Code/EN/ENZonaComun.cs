@@ -1,15 +1,15 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ConviAppWeb.Models
 {
     /// <summary>
-    /// ENZonaComun — Entidad de Negocio para zonas comunes del piso.
-    /// Ejemplos: lavandería, cocina, sala de estudio (Lidia).
+    /// ENZonaComun â€” Entidad de Negocio para zonas comunes del piso.
+    /// Ejemplos: lavanderÃ­a, cocina, sala de estudio (Lidia).
     /// </summary>
     public class ENZonaComun
     {
-        // ─── Atributos privados ───
+        // â”€â”€â”€ Atributos privados â”€â”€â”€
         private int _id;
         private string _nombre;
         private string _descripcion;
@@ -17,29 +17,30 @@ namespace ConviAppWeb.Models
         private bool _disponible;
         private int? _pisoId;
 
-        // ─── Propiedades públicas ───
+        // â”€â”€â”€ Propiedades pÃºblicas â”€â”€â”€
         [Key]
-        public int Id { get => _id; set => _id = value; }
+        public int Id { get { return _id; } set { _id = value; } }
 
         [Required]
         [MaxLength(100)]
-        public string Nombre { get => _nombre; set => _nombre = value; } // lavandería, cocina, sala_estudio
+        public string Nombre { get { return _nombre; } set { _nombre = value; } } // lavanderÃ­a, cocina, sala_estudio
 
         [MaxLength(500)]
-        public string? Descripcion { get => _descripcion; set => _descripcion = value; }
+        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         [Range(1, 100)]
-        public int Capacidad { get => _capacidad; set => _capacidad = value; }
+        public int Capacidad { get { return _capacidad; } set { _capacidad = value; } }
 
-        public bool Disponible { get => _disponible; set => _disponible = value; }
+        public bool Disponible { get { return _disponible; } set { _disponible = value; } }
 
-        // ─── Clave foránea ───
-        public int? PisoId { get => _pisoId; set => _pisoId = value; }
+        // â”€â”€â”€ Clave forÃ¡nea â”€â”€â”€
+        public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
 
-        // ─── Métodos de negocio ───
-        public bool EstaDisponible() => _disponible;
-        public int TotalReservas() => 0; // Se calcularía con una consulta ADO.NET
+        // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
+        public bool EstaDisponible() { return _disponible; }
+        public int TotalReservas() { return 0; } // Se calcularÃ­a con una consulta ADO.NET
 
         public ENZonaComun() { _disponible = true; _capacidad = 1; }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — metodo desconectado
+        // CREATE â€” metodo desconectado
         public bool CrearRol(ENRol en)
         {
             bool creado = false;
@@ -43,7 +43,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ — metodo conectado
+        // READ â€” metodo conectado
         public ENRol LeerRol(int id)
         {
             ENRol en = null;
@@ -76,7 +76,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // UPDATE — metodo desconectado
+        // UPDATE â€” metodo desconectado
         public bool ActualizarRol(ENRol en)
         {
             bool actualizado = false;
@@ -111,7 +111,7 @@ namespace ConviAppWeb.DataAccess
             return actualizado;
         }
 
-        // DELETE — metodo desconectado
+        // DELETE â€” metodo desconectado
         public bool BorrarRol(ENRol en)
         {
             bool borrado = false;
@@ -142,3 +142,4 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+

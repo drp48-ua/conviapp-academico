@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ConviAppWeb.Models
 {
     /// <summary>
-    /// ENContrato — Entidad de Negocio para contratos de arrendamiento.
-    /// Capa de lógica de negocio (Entrega 3 - Dani).
-    /// Incluye atributos privados, propiedades públicas y estructura de comisiones.
+    /// ENContrato â€” Entidad de Negocio para contratos de arrendamiento.
+    /// Capa de lÃ³gica de negocio (Entrega 3 - Dani).
+    /// Incluye atributos privados, propiedades pÃºblicas y estructura de comisiones.
     /// </summary>
     public class ENContrato
     {
-        // ─── Atributos privados ───
+        // â”€â”€â”€ Atributos privados â”€â”€â”€
         private int _id;
         private string _type;
         private DateTime _startDate;
@@ -23,111 +23,96 @@ namespace ConviAppWeb.Models
         private string _notes;
         private int _propertyId;
         private int _userId;
-        private decimal _commissionRate; // % comisión sobre renta mensual (ej. 5 = 5%)
+        private decimal _commissionRate; // % comisiÃ³n sobre renta mensual (ej. 5 = 5%)
 
-        // ─── Propiedades públicas ───
+        // â”€â”€â”€ Propiedades pÃºblicas â”€â”€â”€
         [Key]
         public int Id
         {
-            get => _id;
-            set => _id = value;
+            get { return _id; } set { _id = value; }
         }
 
         [Required(ErrorMessage = "El tipo de contrato es obligatorio")]
         public string Type
         {
-            get => _type;
-            set => _type = value;
+            get { return _type; } set { _type = value; }
         } // arrendamiento, temporal, subarriendo
 
         [Required]
         public DateTime StartDate
         {
-            get => _startDate;
-            set => _startDate = value;
+            get { return _startDate; } set { _startDate = value; }
         }
 
         [Required]
         public DateTime EndDate
         {
-            get => _endDate;
-            set => _endDate = value;
+            get { return _endDate; } set { _endDate = value; }
         }
 
         [Column(TypeName = "decimal(18,2)")]
         [Range(0, double.MaxValue, ErrorMessage = "La renta debe ser positiva")]
         public decimal MonthlyRent
         {
-            get => _monthlyRent;
-            set => _monthlyRent = value;
+            get { return _monthlyRent; } set { _monthlyRent = value; }
         }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal DepositAmount
         {
-            get => _depositAmount;
-            set => _depositAmount = value;
+            get { return _depositAmount; } set { _depositAmount = value; }
         }
 
         [Required]
         public string Status
         {
-            get => _status;
-            set => _status = value;
+            get { return _status; } set { _status = value; }
         } // activo, vencido, cancelado
 
         public string? Notes
         {
-            get => _notes;
-            set => _notes = value;
+            get { return _notes; } set { _notes = value; }
         }
 
-        /// <summary>Porcentaje de comisión sobre la renta mensual (ej: 5 = 5%).</summary>
+        /// <summary>Porcentaje de comisiÃ³n sobre la renta mensual (ej: 5 = 5%).</summary>
         [Column(TypeName = "decimal(5,2)")]
         [Range(0, 100)]
         public decimal CommissionRate
         {
-            get => _commissionRate;
-            set => _commissionRate = value;
+            get { return _commissionRate; } set { _commissionRate = value; }
         }
 
-        // ─── Claves foráneas ───
+        // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
         public int PropertyId
         {
-            get => _propertyId;
-            set => _propertyId = value;
+            get { return _propertyId; } set { _propertyId = value; }
         }
         // Property nav eliminada (sin EF)
 
         public int UserId
         {
-            get => _userId;
-            set => _userId = value;
+            get { return _userId; } set { _userId = value; }
         }
         // User nav eliminada (sin EF)
 
-        // ─── Navegación ───
+        // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
         public ICollection<ENPago> Pagos { get; set; } = new List<ENPago>();
         public ICollection<ENDocumento> Documentos { get; set; } = new List<ENDocumento>();
 
-        // ─── Métodos de negocio ───
-        public bool IsActive() => _status == "activo" && _endDate >= DateTime.Now;
+        // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
+        public bool IsActive() { return _status == "activo" && _endDate >= DateTime.Now; }
 
-        public int RemainingMonths() =>
-            IsActive() ? (int)((_endDate - DateTime.Now).TotalDays / 30) : 0;
+        public int RemainingMonths() { return IsActive() ? (int)((_endDate - DateTime.Now).TotalDays / 30) : 0; }
 
-        public decimal TotalContractValue() =>
-            _monthlyRent * (decimal)((_endDate - _startDate).TotalDays / 30);
+        public decimal TotalContractValue() { return _monthlyRent * (decimal)((_endDate - _startDate).TotalDays / 30); }
 
-        /// <summary>Calcula la comisión mensual según el porcentaje configurado.</summary>
-        public decimal CalculateMonthlyCommission() =>
-            _monthlyRent * (_commissionRate / 100m);
+        /// <summary>Calcula la comisiÃ³n mensual segÃºn el porcentaje configurado.</summary>
+        public decimal CalculateMonthlyCommission() { return _monthlyRent * (_commissionRate / 100m); }
 
-        /// <summary>Calcula la comisión total durante toda la vigencia del contrato.</summary>
-        public decimal CalculateTotalCommission() =>
-            TotalContractValue() * (_commissionRate / 100m);
+        /// <summary>Calcula la comisiÃ³n total durante toda la vigencia del contrato.</summary>
+        public decimal CalculateTotalCommission() { return TotalContractValue() * (_commissionRate / 100m); }
 
-        /// <summary>Constructor por defecto — valores iniciales.</summary>
+        /// <summary>Constructor por defecto â€” valores iniciales.</summary>
         public ENContrato()
         {
             _status = "activo";
@@ -135,3 +120,4 @@ namespace ConviAppWeb.Models
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearTarea(ENTarea en)
         {
             bool creado = false;
@@ -39,7 +39,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENTarea> ListarTodas(int? pisoId = null)
         {
             var lista = new List<ENTarea>();
@@ -59,7 +59,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // UPDATE estado — método conectado
+        // UPDATE estado â€” mÃ©todo conectado
         public bool ToggleEstado(int id)
         {
             bool ok = false;
@@ -77,7 +77,7 @@ namespace ConviAppWeb.DataAccess
             return ok;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarTarea(ENTarea en)
         {
             bool borrado = false;
@@ -85,7 +85,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Tarea WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Tarea WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "tarea");
                 DataTable t = bdVirtual.Tables["tarea"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -97,7 +97,7 @@ namespace ConviAppWeb.DataAccess
             return borrado;
         }
 
-        private ENTarea MapRow(SQLiteDataReader dr) => new ENTarea
+        private ENTarea MapRow(SQLiteDataReader dr) { return new ENTarea
         {
             Id            = Convert.ToInt32(dr["id"]),
             Titulo        = dr["titulo"] != DBNull.Value ? dr["titulo"].ToString() : null,
@@ -107,6 +107,7 @@ namespace ConviAppWeb.DataAccess
             FechaCreacion = dr["fecha_creacion"] != DBNull.Value ? Convert.ToDateTime(dr["fecha_creacion"]) : DateTime.Now,
             CreadaPorId   = dr["creada_por_id"] != DBNull.Value ? Convert.ToInt32(dr["creada_por_id"]) : 0,
             PisoId        = dr["piso_id"] != DBNull.Value ? (int?)Convert.ToInt32(dr["piso_id"]) : null,
-        };
+        }; }
     }
 }
+

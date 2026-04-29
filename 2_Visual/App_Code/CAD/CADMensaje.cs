@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearMensaje(ENMensaje en)
         {
             bool creado = false;
@@ -37,7 +37,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENMensaje> ListarTodos(int? pisoId = null)
         {
             var lista = new List<ENMensaje>();
@@ -57,7 +57,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        private ENMensaje MapRow(SQLiteDataReader dr) => new ENMensaje
+        private ENMensaje MapRow(SQLiteDataReader dr) { return new ENMensaje
         {
             Id         = Convert.ToInt32(dr["id"]),
             Contenido  = dr["contenido"] != DBNull.Value ? dr["contenido"].ToString() : null,
@@ -65,6 +65,7 @@ namespace ConviAppWeb.DataAccess
             Leido      = dr["leido"] != DBNull.Value && Convert.ToInt32(dr["leido"]) == 1,
             EmisorId   = dr["emisor_id"] != DBNull.Value ? Convert.ToInt32(dr["emisor_id"]) : 0,
             PisoId     = dr["piso_id"] != DBNull.Value ? (int?)Convert.ToInt32(dr["piso_id"]) : null,
-        };
+        }; }
     }
 }
+

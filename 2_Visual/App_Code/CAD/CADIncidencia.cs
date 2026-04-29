@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearIncidencia(ENIncidencia en)
         {
             bool creado = false;
@@ -39,7 +39,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENIncidencia> ListarTodas(int? pisoId = null)
         {
             var lista = new List<ENIncidencia>();
@@ -59,7 +59,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // UPDATE estado — método conectado
+        // UPDATE estado â€” mÃ©todo conectado
         public bool ActualizarEstado(int id, string estado)
         {
             bool ok = false;
@@ -77,7 +77,7 @@ namespace ConviAppWeb.DataAccess
             return ok;
         }
 
-        private ENIncidencia MapRow(SQLiteDataReader dr) => new ENIncidencia
+        private ENIncidencia MapRow(SQLiteDataReader dr) { return new ENIncidencia
         {
             Id             = Convert.ToInt32(dr["id"]),
             Titulo         = dr["titulo"] != DBNull.Value ? dr["titulo"].ToString() : null,
@@ -87,6 +87,7 @@ namespace ConviAppWeb.DataAccess
             FechaReporte   = dr["fecha_reporte"] != DBNull.Value ? Convert.ToDateTime(dr["fecha_reporte"]) : DateTime.Now,
             ReportadaPorId = dr["reportada_por_id"] != DBNull.Value ? Convert.ToInt32(dr["reportada_por_id"]) : 0,
             PisoId         = dr["piso_id"] != DBNull.Value ? (int?)Convert.ToInt32(dr["piso_id"]) : null,
-        };
+        }; }
     }
 }
+

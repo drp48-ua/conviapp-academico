@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearGasto(ENGasto en)
         {
             bool creado = false;
@@ -39,7 +39,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENGasto> ListarTodos(int? pisoId = null)
         {
             var lista = new List<ENGasto>();
@@ -59,7 +59,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarGasto(ENGasto en)
         {
             bool borrado = false;
@@ -67,7 +67,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Gasto WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Gasto WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "gasto");
                 DataTable t = bdVirtual.Tables["gasto"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -79,7 +79,7 @@ namespace ConviAppWeb.DataAccess
             return borrado;
         }
 
-        private ENGasto MapRow(SQLiteDataReader dr) => new ENGasto
+        private ENGasto MapRow(SQLiteDataReader dr) { return new ENGasto
         {
             Id              = Convert.ToInt32(dr["id"]),
             Concepto        = dr["concepto"] != DBNull.Value ? dr["concepto"].ToString() : null,
@@ -89,6 +89,7 @@ namespace ConviAppWeb.DataAccess
             Descripcion     = dr["descripcion"] != DBNull.Value ? dr["descripcion"].ToString() : null,
             RegistradoPorId = dr["registrado_por_id"] != DBNull.Value ? Convert.ToInt32(dr["registrado_por_id"]) : 0,
             PisoId          = dr["piso_id"] != DBNull.Value ? (int?)Convert.ToInt32(dr["piso_id"]) : null,
-        };
+        }; }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado (DataSet + SqlDataAdapter)
+        // CREATE â€” mÃ©todo desconectado (DataSet + SqlDataAdapter)
         public bool CrearUsuario(ENUsuario en)
         {
             bool creado = false;
@@ -31,7 +31,7 @@ namespace ConviAppWeb.DataAccess
                 nueva["telefono"]       = en.Telefono ?? (object)DBNull.Value;
                 nueva["fecha_registro"] = en.FechaRegistro.ToString("o");
                 nueva["activo"]         = en.Activo ? 1 : 0;
-                nueva["rol"]            = en.Rol?.Nombre ?? "Basico";
+                nueva["rol"]            = en.Rol.Nombre ?? "Basico";
                 t.Rows.Add(nueva);
 
                 SQLiteCommandBuilder cb = new SQLiteCommandBuilder(da);
@@ -44,7 +44,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ por id — método conectado (SqlCommand + SqlDataReader)
+        // READ por id â€” mÃ©todo conectado (SqlCommand + SqlDataReader)
         public ENUsuario LeerUsuario(int id)
         {
             ENUsuario en = null;
@@ -66,7 +66,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // READ por email — método conectado
+        // READ por email â€” mÃ©todo conectado
         public ENUsuario BuscarPorEmail(string email)
         {
             ENUsuario en = null;
@@ -88,7 +88,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // EXISTS por email — método conectado
+        // EXISTS por email â€” mÃ©todo conectado
         public bool ExisteEmail(string email)
         {
             bool existe = false;
@@ -107,7 +107,7 @@ namespace ConviAppWeb.DataAccess
             return existe;
         }
 
-        // UPDATE — método desconectado
+        // UPDATE â€” mÃ©todo desconectado
         public bool ActualizarUsuario(ENUsuario en)
         {
             bool actualizado = false;
@@ -122,7 +122,7 @@ namespace ConviAppWeb.DataAccess
                 com.Parameters.AddWithValue("@a",  en.Apellidos ?? "");
                 com.Parameters.AddWithValue("@e",  en.Email);
                 com.Parameters.AddWithValue("@p",  en.PasswordHash);
-                com.Parameters.AddWithValue("@r",  en.Rol?.Nombre ?? "Basico");
+                com.Parameters.AddWithValue("@r",  en.Rol.Nombre ?? "Basico");
                 com.Parameters.AddWithValue("@id", en.Id);
                 actualizado = com.ExecuteNonQuery() > 0;
             }
@@ -132,7 +132,7 @@ namespace ConviAppWeb.DataAccess
             return actualizado;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarUsuario(ENUsuario en)
         {
             bool borrado = false;
@@ -141,7 +141,7 @@ namespace ConviAppWeb.DataAccess
 
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Usuario WHERE id = {en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Usuario WHERE id = " + en.Id, c);
                 da.Fill(bdVirtual, "usuario");
                 DataTable t = bdVirtual.Tables["usuario"];
                 DataRow[] filas = t.Select("id = " + en.Id);
@@ -175,3 +175,4 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+

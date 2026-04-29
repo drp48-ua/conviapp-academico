@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — metodo desconectado
+        // CREATE â€” metodo desconectado
         public bool CrearNotificacion(ENNotificacion en)
         {
             bool creado = false;
@@ -29,7 +29,7 @@ namespace ConviAppWeb.DataAccess
                     nueva["tipo"] = en.Tipo ?? (object)DBNull.Value;
                     nueva["leida"] = en.Leida ? 1 : 0;
                     nueva["fecha_creacion"] = en.FechaCreacion.ToString("o");
-                    nueva["fecha_lectura"] = en.FechaLectura?.ToString("o") ?? (object)DBNull.Value;
+                    nueva["fecha_lectura"] = en.FechaLectura.ToString("o") ?? (object)DBNull.Value;
                     nueva["usuario_id"] = en.UsuarioId;
                     t.Rows.Add(nueva);
 
@@ -45,7 +45,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ — metodo conectado
+        // READ â€” metodo conectado
         public ENNotificacion LeerNotificacion(int id)
         {
             ENNotificacion en = null;
@@ -80,7 +80,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // UPDATE — metodo desconectado
+        // UPDATE â€” metodo desconectado
         public bool ActualizarNotificacion(ENNotificacion en)
         {
             bool actualizado = false;
@@ -101,7 +101,7 @@ namespace ConviAppWeb.DataAccess
                         filas[0]["tipo"] = en.Tipo ?? (object)DBNull.Value;
                         filas[0]["leida"] = en.Leida ? 1 : 0;
                         filas[0]["fecha_creacion"] = en.FechaCreacion.ToString("o");
-                        filas[0]["fecha_lectura"] = en.FechaLectura?.ToString("o") ?? (object)DBNull.Value;
+                        filas[0]["fecha_lectura"] = en.FechaLectura.ToString("o") ?? (object)DBNull.Value;
                         filas[0]["usuario_id"] = en.UsuarioId;
 
                         SQLiteCommandBuilder cb = new SQLiteCommandBuilder(da);
@@ -117,7 +117,7 @@ namespace ConviAppWeb.DataAccess
             return actualizado;
         }
 
-        // DELETE — metodo desconectado
+        // DELETE â€” metodo desconectado
         public bool BorrarNotificacion(ENNotificacion en)
         {
             bool borrado = false;
@@ -148,3 +148,4 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+

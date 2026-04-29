@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ConviAppWeb.Models
 {
     /// <summary>
-    /// ENImagen — Entidad de Negocio para imágenes de habitaciones y pisos.
+    /// ENImagen â€” Entidad de Negocio para imÃ¡genes de habitaciones y pisos.
     /// Permite mostrar fotos del alojamiento (Marina).
     /// </summary>
     public class ENImagen
     {
-        // ─── Atributos privados ───
+        // â”€â”€â”€ Atributos privados â”€â”€â”€
         private int _id;
         private string _url;
         private string _descripcion;
@@ -18,28 +18,29 @@ namespace ConviAppWeb.Models
         private int? _habitacionId;
         private int? _pisoId;
 
-        // ─── Propiedades públicas ───
+        // â”€â”€â”€ Propiedades pÃºblicas â”€â”€â”€
         [Key]
-        public int Id { get => _id; set => _id = value; }
+        public int Id { get { return _id; } set { _id = value; } }
 
         [Required]
         [MaxLength(500)]
-        public string Url { get => _url; set => _url = value; }
+        public string Url { get { return _url; } set { _url = value; } }
 
         [MaxLength(200)]
-        public string? Descripcion { get => _descripcion; set => _descripcion = value; }
+        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
-        public bool EsPrincipal { get => _esPrincipal; set => _esPrincipal = value; }
+        public bool EsPrincipal { get { return _esPrincipal; } set { _esPrincipal = value; } }
 
-        public DateTime FechaSubida { get => _fechaSubida; set => _fechaSubida = value; }
+        public DateTime FechaSubida { get { return _fechaSubida; } set { _fechaSubida = value; } }
 
-        // ─── Claves foráneas ───
-        public int? HabitacionId { get => _habitacionId; set => _habitacionId = value; }
-        public int? PisoId { get => _pisoId; set => _pisoId = value; }
+        // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
+        public int? HabitacionId { get { return _habitacionId; } set { _habitacionId = value; } }
+        public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
 
-        // ─── Métodos de negocio ───
-        public bool EsImagenPrincipal() => _esPrincipal;
+        // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
+        public bool EsImagenPrincipal() { return _esPrincipal; }
 
         public ENImagen() { _fechaSubida = DateTime.Now; }
     }
 }
+

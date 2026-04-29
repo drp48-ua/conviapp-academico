@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearPago(ENPago en)
         {
             bool creado = false;
@@ -40,7 +40,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ por id — método conectado
+        // READ por id â€” mÃ©todo conectado
         public ENPago LeerPago(int id)
         {
             ENPago en = null;
@@ -59,7 +59,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENPago> ListarTodos(int? contratoId = null)
         {
             var lista = new List<ENPago>();
@@ -79,7 +79,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarPago(ENPago en)
         {
             bool borrado = false;
@@ -87,7 +87,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Pago WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Pago WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "pago");
                 DataTable t = bdVirtual.Tables["pago"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -98,7 +98,7 @@ namespace ConviAppWeb.DataAccess
             return borrado;
         }
 
-        private ENPago MapRow(SQLiteDataReader dr) => new ENPago
+        private ENPago MapRow(SQLiteDataReader dr) { return new ENPago
         {
             Id         = Convert.ToInt32(dr["id"]),
             Amount     = dr["amount"] != DBNull.Value ? Convert.ToDecimal(dr["amount"]) : 0,
@@ -109,6 +109,7 @@ namespace ConviAppWeb.DataAccess
             Reference  = dr["reference"] != DBNull.Value ? dr["reference"].ToString() : null,
             ContratoId = dr["contrato_id"] != DBNull.Value ? Convert.ToInt32(dr["contrato_id"]) : 0,
             UserId     = dr["user_id"] != DBNull.Value ? Convert.ToInt32(dr["user_id"]) : 0,
-        };
+        }; }
     }
 }
+

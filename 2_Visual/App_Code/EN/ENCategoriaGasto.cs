@@ -1,39 +1,40 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConviAppWeb.Models
 {
     /// <summary>
-    /// ENCategoriaGasto — Categorías para clasificar los gastos comunes (Nazim).
+    /// ENCategoriaGasto â€” CategorÃ­as para clasificar los gastos comunes (Nazim).
     /// Ejemplos: Luz, Agua, Internet, Comunidad.
     /// </summary>
     public class ENCategoriaGasto
     {
-        // ─── Atributos privados ───
+        // â”€â”€â”€ Atributos privados â”€â”€â”€
         private int _id;
         private string _nombre;
         private string _descripcion;
         private string _icono; // nombre de icono (FontAwesome, etc.)
 
-        // ─── Propiedades públicas ───
+        // â”€â”€â”€ Propiedades pÃºblicas â”€â”€â”€
         [Key]
-        public int Id { get => _id; set => _id = value; }
+        public int Id { get { return _id; } set { _id = value; } }
 
         [Required]
         [MaxLength(100)]
-        public string Nombre { get => _nombre; set => _nombre = value; }
+        public string Nombre { get { return _nombre; } set { _nombre = value; } }
 
         [MaxLength(300)]
-        public string? Descripcion { get => _descripcion; set => _descripcion = value; }
+        public string? Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         [MaxLength(50)]
-        public string? Icono { get => _icono; set => _icono = value; }
+        public string? Icono { get { return _icono; } set { _icono = value; } }
 
-        // ─── Navegación ───
+        // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
         public ICollection<ENGasto> Gastos { get; set; } = new List<ENGasto>();
 
-        // ─── Métodos de negocio ───
-        public int TotalGastos() => Gastos?.Count ?? 0;
+        // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
+        public int TotalGastos() { return Gastos.Count ?? 0; }
     }
 }
+

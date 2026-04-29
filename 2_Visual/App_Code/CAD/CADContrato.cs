@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearContrato(ENContrato en)
         {
             bool creado = false;
@@ -42,7 +42,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ por id — método conectado
+        // READ por id â€” mÃ©todo conectado
         public ENContrato LeerContrato(int id)
         {
             ENContrato en = null;
@@ -61,7 +61,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENContrato> ListarTodos(int? userId = null)
         {
             var lista = new List<ENContrato>();
@@ -81,7 +81,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // UPDATE — método desconectado
+        // UPDATE â€” mÃ©todo desconectado
         public bool ActualizarContrato(ENContrato en)
         {
             bool ok = false;
@@ -89,7 +89,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Contrato WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Contrato WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "contrato");
                 DataTable t = bdVirtual.Tables["contrato"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -107,7 +107,7 @@ namespace ConviAppWeb.DataAccess
             return ok;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarContrato(ENContrato en)
         {
             bool borrado = false;
@@ -115,7 +115,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Contrato WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Contrato WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "contrato");
                 DataTable t = bdVirtual.Tables["contrato"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -126,7 +126,7 @@ namespace ConviAppWeb.DataAccess
             return borrado;
         }
 
-        private ENContrato MapRow(SQLiteDataReader dr) => new ENContrato
+        private ENContrato MapRow(SQLiteDataReader dr) { return new ENContrato
         {
             Id             = Convert.ToInt32(dr["id"]),
             Type           = dr["type"] != DBNull.Value ? dr["type"].ToString() : null,
@@ -139,6 +139,7 @@ namespace ConviAppWeb.DataAccess
             CommissionRate = dr["commission_rate"] != DBNull.Value ? Convert.ToDecimal(dr["commission_rate"]) : 0,
             PropertyId     = dr["property_id"] != DBNull.Value ? Convert.ToInt32(dr["property_id"]) : 0,
             UserId         = dr["user_id"] != DBNull.Value ? Convert.ToInt32(dr["user_id"]) : 0,
-        };
+        }; }
     }
 }
+

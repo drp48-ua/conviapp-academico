@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ConviAppWeb.Models
 {
     /// <summary>
-    /// ENIncidencia — Entidad de Negocio para incidencias o averías del piso.
-    /// Gestión de problemas y seguimiento de su resolución (Nazim).
+    /// ENIncidencia â€” Entidad de Negocio para incidencias o averÃ­as del piso.
+    /// GestiÃ³n de problemas y seguimiento de su resoluciÃ³n (Nazim).
     /// </summary>
     public class ENIncidencia
     {
-        // ─── Atributos privados ───
+        // â”€â”€â”€ Atributos privados â”€â”€â”€
         private int _id;
         private string _titulo;
         private string _descripcion;
@@ -21,43 +21,43 @@ namespace ConviAppWeb.Models
         private int? _pisoId;
         private int? _habitacionId;
 
-        // ─── Propiedades públicas ───
+        // â”€â”€â”€ Propiedades pÃºblicas â”€â”€â”€
         [Key]
-        public int Id { get => _id; set => _id = value; }
+        public int Id { get { return _id; } set { _id = value; } }
 
         [Required]
         [MaxLength(200)]
-        public string Titulo { get => _titulo; set => _titulo = value; }
+        public string Titulo { get { return _titulo; } set { _titulo = value; } }
 
         [Required]
         [MaxLength(2000)]
-        public string Descripcion { get => _descripcion; set => _descripcion = value; }
+        public string Descripcion { get { return _descripcion; } set { _descripcion = value; } }
 
         [Required]
-        public string Estado { get => _estado; set => _estado = value; } // abierta, en_progreso, resuelta
+        public string Estado { get { return _estado; } set { _estado = value; } } // abierta, en_progreso, resuelta
 
         [MaxLength(20)]
-        public string Prioridad { get => _prioridad; set => _prioridad = value; } // baja, media, alta, urgente
+        public string Prioridad { get { return _prioridad; } set { _prioridad = value; } } // baja, media, alta, urgente
 
-        public DateTime FechaReporte { get => _fechaReporte; set => _fechaReporte = value; }
-        public DateTime? FechaResolucion { get => _fechaResolucion; set => _fechaResolucion = value; }
+        public DateTime FechaReporte { get { return _fechaReporte; } set { _fechaReporte = value; } }
+        public DateTime? FechaResolucion { get { return _fechaResolucion; } set { _fechaResolucion = value; } }
 
-        // ─── Claves foráneas ───
-        public int ReportadaPorId { get => _reportadaPorId; set => _reportadaPorId = value; }
+        // â”€â”€â”€ Claves forÃ¡neas â”€â”€â”€
+        public int ReportadaPorId { get { return _reportadaPorId; } set { _reportadaPorId = value; } }
         public ENUsuario? ReportadaPor { get; set; }
 
-        public int? PisoId { get => _pisoId; set => _pisoId = value; }
+        public int? PisoId { get { return _pisoId; } set { _pisoId = value; } }
         public ENPiso? Piso { get; set; }
 
-        public int? HabitacionId { get => _habitacionId; set => _habitacionId = value; }
+        public int? HabitacionId { get { return _habitacionId; } set { _habitacionId = value; } }
         public ENHabitacion? Habitacion { get; set; }
 
-        // ─── Métodos de negocio ───
-        public bool EstaResuelta() => _estado == "resuelta";
-        public bool EsUrgente() => _prioridad == "urgente";
-        public int? DiasAbierta() => _fechaResolucion.HasValue
+        // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
+        public bool EstaResuelta() { return _estado == "resuelta"; }
+        public bool EsUrgente() { return _prioridad == "urgente"; }
+        public int? DiasAbierta() { return _fechaResolucion.HasValue
             ? (int)(_fechaResolucion.Value - _fechaReporte).TotalDays
-            : (int)(DateTime.Now - _fechaReporte).TotalDays;
+            : (int)(DateTime.Now - _fechaReporte).TotalDays; }
 
         public ENIncidencia()
         {
@@ -67,3 +67,4 @@ namespace ConviAppWeb.Models
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearDocumento(ENDocumento en)
         {
             bool creado = false;
@@ -41,7 +41,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ por id — método conectado
+        // READ por id â€” mÃ©todo conectado
         public ENDocumento LeerDocumento(int id)
         {
             ENDocumento en = null;
@@ -60,7 +60,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // READ ALL por usuario — método conectado
+        // READ ALL por usuario â€” mÃ©todo conectado
         public List<ENDocumento> ListarPorUsuario(int userId)
         {
             var lista = new List<ENDocumento>();
@@ -79,7 +79,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        // DELETE — método desconectado
+        // DELETE â€” mÃ©todo desconectado
         public bool BorrarDocumento(ENDocumento en)
         {
             bool borrado = false;
@@ -87,7 +87,7 @@ namespace ConviAppWeb.DataAccess
             SQLiteConnection c = new SQLiteConnection(constring);
             try
             {
-                SQLiteDataAdapter da = new SQLiteDataAdapter($"SELECT * FROM Documento WHERE id={en.Id}", c);
+                SQLiteDataAdapter da = new SQLiteDataAdapter("SELECT * FROM Documento WHERE id=" + en.Id, c);
                 da.Fill(bdVirtual, "documento");
                 DataTable t = bdVirtual.Tables["documento"];
                 DataRow[] filas = t.Select("id=" + en.Id);
@@ -98,7 +98,7 @@ namespace ConviAppWeb.DataAccess
             return borrado;
         }
 
-        private ENDocumento MapRow(SQLiteDataReader dr, bool skipData = false) => new ENDocumento
+        private ENDocumento MapRow(SQLiteDataReader dr, bool skipData = false) { return new ENDocumento
         {
             Id          = Convert.ToInt32(dr["id"]),
             FileName    = dr["file_name"] != DBNull.Value ? dr["file_name"].ToString() : null,
@@ -110,6 +110,7 @@ namespace ConviAppWeb.DataAccess
             UploadDate  = dr["upload_date"] != DBNull.Value ? Convert.ToDateTime(dr["upload_date"]) : DateTime.Now,
             PropertyId  = dr["property_id"] != DBNull.Value ? (int?)Convert.ToInt32(dr["property_id"]) : null,
             UserId      = dr["user_id"] != DBNull.Value ? Convert.ToInt32(dr["user_id"]) : 0,
-        };
+        }; }
     }
 }
+

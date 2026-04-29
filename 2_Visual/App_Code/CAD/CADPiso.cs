@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Data.SQLite;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace ConviAppWeb.DataAccess
     {
         private string constring => DbConfig.ConnectionString;
 
-        // CREATE — método desconectado
+        // CREATE â€” mÃ©todo desconectado
         public bool CrearPiso(ENPiso en)
         {
             bool creado = false;
@@ -40,7 +40,7 @@ namespace ConviAppWeb.DataAccess
             return creado;
         }
 
-        // READ por id — método conectado
+        // READ por id â€” mÃ©todo conectado
         public ENPiso LeerPiso(int id)
         {
             ENPiso en = null;
@@ -59,7 +59,7 @@ namespace ConviAppWeb.DataAccess
             return en;
         }
 
-        // READ ALL — método conectado
+        // READ ALL â€” mÃ©todo conectado
         public List<ENPiso> ListarTodos()
         {
             var lista = new List<ENPiso>();
@@ -77,7 +77,7 @@ namespace ConviAppWeb.DataAccess
             return lista;
         }
 
-        private ENPiso MapRow(SQLiteDataReader dr) => new ENPiso
+        private ENPiso MapRow(SQLiteDataReader dr) { return new ENPiso
         {
             Id                = Convert.ToInt32(dr["id"]),
             Direccion         = dr["direccion"] != DBNull.Value ? dr["direccion"].ToString() : null,
@@ -88,6 +88,7 @@ namespace ConviAppWeb.DataAccess
             PrecioTotal       = dr["precio_total"] != DBNull.Value ? Convert.ToDecimal(dr["precio_total"]) : 0,
             Descripcion       = dr["descripcion"] != DBNull.Value ? dr["descripcion"].ToString() : null,
             Disponible        = dr["disponible"] != DBNull.Value && Convert.ToInt32(dr["disponible"]) == 1,
-        };
+        }; }
     }
 }
+

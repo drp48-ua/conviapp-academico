@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 
 namespace ConviAppWeb.DataAccess
 {
@@ -6,6 +6,7 @@ namespace ConviAppWeb.DataAccess
     {
         // Ruta al archivo SQLite en el mismo directorio que el ejecutable
         public static string ConnectionString =>
-            $"Data Source={Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "conviapp.db")};Version=3;";
+            "Data Source=" + Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "conviapp.db") + ";Version=3;";
     }
 }
+
