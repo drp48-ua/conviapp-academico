@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADIncidencia
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearIncidencia(ENIncidencia en)
@@ -90,4 +90,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

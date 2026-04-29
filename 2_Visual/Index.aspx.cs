@@ -25,8 +25,8 @@ public partial class Index : System.Web.UI.Page
     private void CargarDashboard()
     {
         // Nombre y plan del usuario desde sesión
-        lblUserName.Text = Session["UserName"]?.ToString() ?? "Usuario";
-        lblPlan.Text     = Session["UserRole"]?.ToString() ?? "Basico";
+        lblUserName.Text = Session["UserName"] != null ? Session["UserName"].ToString() : "Usuario";
+        lblPlan.Text     = Session["UserRole"] != null ? Session["UserRole"].ToString() : "Basico";
 
         // Estadísticas: pisos (CADPiso – modo desconectado / DataSet)
         var cadPiso  = new CADPiso();
@@ -38,7 +38,7 @@ public partial class Index : System.Web.UI.Page
         var gastos   = cadGasto.ListarTodos();
         decimal totalMes = 0m;
         foreach (var g in gastos) totalMes += g.Importe;
-        lblTotalGastos.Text = $"{totalMes:0.00} €";
+        lblTotalGastos.Text = string.Format("{0:0.00} €", totalMes);
 
         // Tareas pendientes (CADTarea – modo desconectado)
         var cadTarea = new CADTarea();
@@ -47,11 +47,17 @@ public partial class Index : System.Web.UI.Page
     }
 
     protected void BtnPisos_Click(object sender, EventArgs e)
-        => Response.Redirect("Pisos.aspx");
+    {
+        Response.Redirect("Pisos.aspx");
+    }
 
     protected void BtnGastos_Click(object sender, EventArgs e)
-        => Response.Redirect("Gastos.aspx");
+    {
+        Response.Redirect("Gastos.aspx");
+    }
 
     protected void BtnTareas_Click(object sender, EventArgs e)
-        => Response.Redirect("Tareas.aspx");
+    {
+        Response.Redirect("Tareas.aspx");
+    }
 }

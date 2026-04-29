@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADCategoriaGasto
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” metodo desconectado
         public bool CrearCategoriaGasto(ENCategoriaGasto en)
@@ -136,4 +136,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 

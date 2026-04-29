@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADPiso
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearPiso(ENPiso en)
@@ -91,4 +91,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

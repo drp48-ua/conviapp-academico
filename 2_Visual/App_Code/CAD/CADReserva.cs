@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADReserva
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearReserva(ENReserva en)
@@ -90,4 +90,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

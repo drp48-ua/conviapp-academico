@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADSuscripcion
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” metodo desconectado
         public bool CrearSuscripcion(ENSuscripcion en)
@@ -145,4 +145,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 

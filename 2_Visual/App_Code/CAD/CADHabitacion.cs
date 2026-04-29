@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADHabitacion
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” metodo desconectado
         public bool CrearHabitacion(ENHabitacion en)
@@ -148,4 +148,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 

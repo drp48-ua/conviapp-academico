@@ -54,7 +54,9 @@ public partial class Pisos : System.Web.UI.Page
     }
 
     protected void BtnCancelar_Click(object sender, EventArgs e)
-        => pnlFormPiso.Visible = false;
+    {
+        pnlFormPiso.Visible = false;
+    }
 
     protected void GvPisos_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
     {

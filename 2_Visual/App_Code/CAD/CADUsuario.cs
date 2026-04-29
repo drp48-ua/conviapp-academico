@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADUsuario
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado (DataSet + SqlDataAdapter)
         public bool CrearUsuario(ENUsuario en)
@@ -175,4 +175,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 

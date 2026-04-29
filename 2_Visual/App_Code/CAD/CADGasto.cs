@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADGasto
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearGasto(ENGasto en)
@@ -92,4 +92,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

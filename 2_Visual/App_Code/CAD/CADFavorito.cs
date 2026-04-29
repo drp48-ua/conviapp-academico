@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADFavorito
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” metodo desconectado
         public bool CrearFavorito(ENFavorito en)
@@ -139,4 +139,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 

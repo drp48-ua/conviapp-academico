@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADTarea
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearTarea(ENTarea en)
@@ -110,4 +110,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

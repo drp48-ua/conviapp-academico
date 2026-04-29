@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADContrato
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearContrato(ENContrato en)
@@ -142,4 +142,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

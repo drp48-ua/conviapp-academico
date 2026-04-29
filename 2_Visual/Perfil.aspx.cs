@@ -17,9 +17,9 @@ public partial class Perfil : System.Web.UI.Page
 
     private void CargarPerfil()
     {
-        txtNombre.Text  = Session["UserName"]?.ToString() ?? "";
-        txtEmail.Text   = Session["UserEmail"]?.ToString() ?? "";
-        txtFotoUrl.Text = Session["UserPhotoUrl"]?.ToString() ?? "";
+        txtNombre.Text  = Session["UserName"] != null ? Session["UserName"].ToString() : "";
+        txtEmail.Text   = Session["UserEmail"] != null ? Session["UserEmail"].ToString() : "";
+        txtFotoUrl.Text = Session["UserPhotoUrl"] != null ? Session["UserPhotoUrl"].ToString() : "";
 
         // Mostrar imagen si hay URL
         string fotoUrl = txtFotoUrl.Text;

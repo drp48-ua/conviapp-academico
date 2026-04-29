@@ -28,8 +28,8 @@ public partial class Gastos : System.Web.UI.Page
 
         // Calcular total del mes
         decimal total = gastos.Sum(g => g.Importe);
-        lblTotal.Text      = $"{total:0.00} €";
-        lblPorPersona.Text = $"{(total / 3):0.00} €"; // Suponemos 3 compañeros
+        lblTotal.Text      = string.Format("{0:0.00} €", total);
+        lblPorPersona.Text = string.Format("{0:0.00} €", total / 3); // Suponemos 3 compañeros
     }
 
     protected void BtnNuevoGasto_Click(object sender, EventArgs e)
@@ -61,11 +61,13 @@ public partial class Gastos : System.Web.UI.Page
     }
 
     protected void BtnCancelarGasto_Click(object sender, EventArgs e)
-        => pnlFormGasto.Visible = false;
+    {
+        pnlFormGasto.Visible = false;
+    }
 
     protected void GvGastos_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
     {
-        if (e.CommandName == "Pagar" && int.TryParse(e.CommandArgument?.ToString(), out int id))
+        if (e.CommandName == "Pagar" && e.CommandArgument != null && int.TryParse(e.CommandArgument.ToString(), out int id))
         {
             // TODO: marcar gasto como pagado usando CADGasto.ActualizarGasto()
             CargarGastos();

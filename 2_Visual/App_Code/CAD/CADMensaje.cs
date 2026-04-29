@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADMensaje
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” mÃ©todo desconectado
         public bool CrearMensaje(ENMensaje en)
@@ -68,4 +68,5 @@ namespace ConviAppWeb.DataAccess
         }; }
     }
 }
+
 

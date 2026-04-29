@@ -8,7 +8,7 @@ namespace ConviAppWeb.DataAccess
 {
     public class CADZonaComun
     {
-        private string constring => DbConfig.ConnectionString;
+        private string constring { get { return DbConfig.ConnectionString; } }
 
         // CREATE â€” metodo desconectado
         public bool CrearZonaComun(ENZonaComun en)
@@ -142,4 +142,5 @@ namespace ConviAppWeb.DataAccess
         }
     }
 }
+
 
