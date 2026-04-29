@@ -1,24 +1,24 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Index.aspx.cs" Inherits="Index" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ConviApp – Inicio</title>
+    <title>ConviApp â€“ Inicio</title>
     <link rel="stylesheet" href="css/estilos.css" />
 </head>
-<body>
+<body>`n    <form id="form1" runat="server">
 <!-- ============================================================
-     Index.aspx – Capa Visual (Web Forms)
+     Index.aspx â€“ Capa Visual (Web Forms)
      Equivale a Views/Home/Index.cshtml en la capa MVC.
      Muestra el dashboard principal de ConviApp.
      ============================================================ -->
 
 <header class="header">
     <div class="header-inner">
-        <a href="Index.aspx" class="logo">🏠 ConviApp</a>
+        <a href="Index.aspx" class="logo">ðŸ  ConviApp</a>
         <nav>
-            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="Login.aspx" CssClass="btn btn-outline">Iniciar Sesión</asp:HyperLink>
+            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="Login.aspx" CssClass="btn btn-outline">Iniciar SesiÃ³n</asp:HyperLink>
             <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="Login.aspx" CssClass="btn btn-primary">Registrarse</asp:HyperLink>
         </nav>
     </div>
@@ -38,18 +38,18 @@
                     <asp:Label ID="lblUserName" runat="server" Text="Usuario" />
                 </h4>
                 <span class="badge" style="background:#3b82f6;color:white;padding:2px 10px;border-radius:20px;font-size:0.75rem;">
-                    <asp:Label ID="lblPlan" runat="server" Text="Básico" />
+                    <asp:Label ID="lblPlan" runat="server" Text="BÃ¡sico" />
                 </span>
             </div>
         </div>
 
-        <!-- Navegación principal -->
+        <!-- NavegaciÃ³n principal -->
         <div class="flat-card" style="margin-top:16px;">
             <nav>
-                <a href="Index.aspx" class="menu-link active">🏠 Inicio</a>
-                <a href="Pisos.aspx" class="menu-link">🏢 Mis Pisos</a>
-                <a href="Gastos.aspx" class="menu-link">💶 Gastos</a>
-                <a href="Perfil.aspx" class="menu-link">👤 Perfil</a>
+                <a href="Index.aspx" class="menu-link active">ðŸ  Inicio</a>
+                <a href="Pisos.aspx" class="menu-link">ðŸ¢ Mis Pisos</a>
+                <a href="Gastos.aspx" class="menu-link">ðŸ’¶ Gastos</a>
+                <a href="Perfil.aspx" class="menu-link">ðŸ‘¤ Perfil</a>
             </nav>
         </div>
     </aside>
@@ -58,37 +58,37 @@
     <section style="flex:1;">
         <!-- Bienvenida -->
         <div class="flat-card" style="margin-bottom:24px;">
-            <h1 style="font-size:1.6rem;">Bienvenido a ConviApp 👋</h1>
-            <p style="color:#6b7280;margin-top:8px;">Gestiona tu piso compartido fácilmente.</p>
+            <h1 style="font-size:1.6rem;">Bienvenido a ConviApp ðŸ‘‹</h1>
+            <p style="color:#6b7280;margin-top:8px;">Gestiona tu piso compartido fÃ¡cilmente.</p>
         </div>
 
-        <!-- Pestañas de características -->
+        <!-- PestaÃ±as de caracterÃ­sticas -->
         <div class="flat-card">
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
-                <asp:Button ID="btnPisos" runat="server" Text="🏠 Pisos" CssClass="btn btn-outline" OnClick="BtnPisos_Click" />
-                <asp:Button ID="btnGastos" runat="server" Text="💶 Gastos" CssClass="btn btn-outline" OnClick="BtnGastos_Click" />
-                <asp:Button ID="btnTareas" runat="server" Text="✅ Tareas" CssClass="btn btn-outline" OnClick="BtnTareas_Click" />
+                <asp:Button ID="btnPisos" runat="server" Text="ðŸ  Pisos" CssClass="btn btn-outline" OnClick="BtnPisos_Click" />
+                <asp:Button ID="btnGastos" runat="server" Text="ðŸ’¶ Gastos" CssClass="btn btn-outline" OnClick="BtnGastos_Click" />
+                <asp:Button ID="btnTareas" runat="server" Text="âœ… Tareas" CssClass="btn btn-outline" OnClick="BtnTareas_Click" />
             </div>
 
             <!-- Panel de resumen -->
             <asp:Panel ID="pnlResumen" runat="server" Visible="true">
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;">
                     <div class="stat-card">
-                        <div style="font-size:2rem;">🏢</div>
+                        <div style="font-size:2rem;">ðŸ¢</div>
                         <div style="font-size:1.5rem;font-weight:700;">
                             <asp:Label ID="lblNumPisos" runat="server" Text="0" />
                         </div>
                         <div style="color:#6b7280;font-size:0.85rem;">Pisos activos</div>
                     </div>
                     <div class="stat-card">
-                        <div style="font-size:2rem;">💶</div>
+                        <div style="font-size:2rem;">ðŸ’¶</div>
                         <div style="font-size:1.5rem;font-weight:700;">
-                            <asp:Label ID="lblTotalGastos" runat="server" Text="0.00 €" />
+                            <asp:Label ID="lblTotalGastos" runat="server" Text="0.00 â‚¬" />
                         </div>
                         <div style="color:#6b7280;font-size:0.85rem;">Gastos este mes</div>
                     </div>
                     <div class="stat-card">
-                        <div style="font-size:2rem;">✅</div>
+                        <div style="font-size:2rem;">âœ…</div>
                         <div style="font-size:1.5rem;font-weight:700;">
                             <asp:Label ID="lblNumTareas" runat="server" Text="0" />
                         </div>
@@ -106,19 +106,20 @@
             <div style="padding:16px;">
                 <div style="font-size:0.6rem;letter-spacing:2px;opacity:0.6;margin-bottom:6px;">PUBLICIDAD</div>
                 <h3 style="font-size:1rem;margin-bottom:8px;">Limpieza a domicilio</h3>
-                <p style="font-size:0.8rem;color:#dbeafe;">Primera limpieza al 50%. Código CONVI50.</p>
+                <p style="font-size:0.8rem;color:#dbeafe;">Primera limpieza al 50%. CÃ³digo CONVI50.</p>
             </div>
         </div>
         <div style="text-align:center;margin-top:8px;">
-            <a href="Login.aspx?plan=Profesional" style="font-size:0.75rem;color:#6b7280;text-decoration:underline;">💎 Actualizar a Pro para eliminar anuncios</a>
+            <a href="Login.aspx?plan=Profesional" style="font-size:0.75rem;color:#6b7280;text-decoration:underline;">ðŸ’Ž Actualizar a Pro para eliminar anuncios</a>
         </div>
     </aside>
 
 </main>
 
 <footer class="footer">
-    <div>© 2025 ConviApp · <a href="#">Términos</a> · <a href="#">Privacidad</a></div>
+    <div>Â© 2025 ConviApp Â· <a href="#">TÃ©rminos</a> Â· <a href="#">Privacidad</a></div>
 </footer>
 
-</body>
+    </form>`n</body>
 </html>
+

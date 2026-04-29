@@ -1,43 +1,43 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Perfil.aspx.cs" Inherits="Perfil" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Perfil.aspx.cs" Inherits="Perfil" %>
     <!DOCTYPE html>
     <html lang="es">
 
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ConviApp – Mi Perfil</title>
+        <title>ConviApp â€“ Mi Perfil</title>
         <link rel="stylesheet" href="css/estilos.css" />
     </head>
 
-    <body>
+    <body>`n    <form id="form1" runat="server">
         <!-- ============================================================
-     Perfil.aspx – Capa Visual (Web Forms)
+     Perfil.aspx â€“ Capa Visual (Web Forms)
      Equivale a Views/Account/Profile.cshtml en la capa MVC.
-     Edición de perfil de usuario y cambio de contraseña.
+     EdiciÃ³n de perfil de usuario y cambio de contraseÃ±a.
      ============================================================ -->
 
         <header class="header">
             <div class="header-inner">
-                <a href="Index.aspx" class="logo">🏠 ConviApp</a>
+                <a href="Index.aspx" class="logo">ðŸ  ConviApp</a>
                 <nav>
-                    <a href="Index.aspx" class="btn btn-outline">← Volver</a>
+                    <a href="Index.aspx" class="btn btn-outline">â† Volver</a>
                 </nav>
             </div>
         </header>
 
         <main style="max-width:600px;margin:40px auto;padding:0 24px;">
 
-            <!-- Mensaje de éxito -->
+            <!-- Mensaje de Ã©xito -->
             <asp:Panel ID="pnlSuccess" runat="server" Visible="false">
                 <div
                     style="background:rgba(16,185,129,0.1);border:1px solid #10b981;color:#065f46;padding:12px;border-radius:8px;margin-bottom:24px;">
-                    ✅
+                    âœ…
                     <asp:Label ID="lblSuccess" runat="server" />
                 </div>
             </asp:Panel>
 
             <div class="glass-card">
-                <h2 style="margin-bottom:24px;color:#1e3a8a;">👤 Mi Perfil</h2>
+                <h2 style="margin-bottom:24px;color:#1e3a8a;">ðŸ‘¤ Mi Perfil</h2>
 
                 <!-- Avatar -->
                 <div style="text-align:center;margin-bottom:24px;">
@@ -65,24 +65,24 @@
                         </div>
 
                         <div>
-                            <label class="form-label">Correo electrónico *</label>
+                            <label class="form-label">Correo electrÃ³nico *</label>
                             <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" CssClass="form-input"
                                 required="required" />
                         </div>
 
                         <hr style="border:0;border-top:1px solid #e5e7eb;" />
-                        <h4 style="color:#374151;">Cambiar Contraseña</h4>
+                        <h4 style="color:#374151;">Cambiar ContraseÃ±a</h4>
 
                         <div>
-                            <label class="form-label">Contraseña Actual</label>
+                            <label class="form-label">ContraseÃ±a Actual</label>
                             <asp:TextBox ID="txtPassActual" runat="server" TextMode="Password" CssClass="form-input" />
                         </div>
                         <div>
-                            <label class="form-label">Nueva Contraseña</label>
+                            <label class="form-label">Nueva ContraseÃ±a</label>
                             <asp:TextBox ID="txtPassNueva" runat="server" TextMode="Password" CssClass="form-input" />
                         </div>
                         <div>
-                            <label class="form-label">Confirmar Contraseña</label>
+                            <label class="form-label">Confirmar ContraseÃ±a</label>
                             <asp:TextBox ID="txtPassConfirm" runat="server" TextMode="Password" CssClass="form-input" />
                         </div>
 
@@ -98,9 +98,9 @@
         </main>
 
         <footer class="footer">
-            <div>© 2025 ConviApp</div>
+            <div>Â© 2025 ConviApp</div>
         </footer>
 
-    </body>
+        </form>`n</body>
 
     </html>
