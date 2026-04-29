@@ -57,8 +57,8 @@ namespace ConviAppWeb.Models
         public ENSuscripcion? Suscripcion { get; set; }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
-        public ICollection<ENContrato> Contratos { get; set; } = new List<ENContrato>();
-        public ICollection<ENPago> Pagos { get; set; } = new List<ENPago>();
+        public ICollection<ENContrato> Contratos { get; set; }
+        public ICollection<ENPago> Pagos { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public string NombreCompleto() { return "{_nombre} " + _apellidos.Trim(); }
@@ -71,4 +71,5 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
 

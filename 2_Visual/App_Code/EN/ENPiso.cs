@@ -54,7 +54,7 @@ namespace ConviAppWeb.Models
         public string? Caracteristicas { get { return _caracteristicas; } set { _caracteristicas = value; } }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
-        public ICollection<ENHabitacion> Habitaciones { get; set; } = new List<ENHabitacion>();
+        public ICollection<ENHabitacion> Habitaciones { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool TieneHabitacionesLibres() { return _disponible; }
@@ -63,4 +63,5 @@ namespace ConviAppWeb.Models
         public ENPiso() { _disponible = true; }
     }
 }
+
 

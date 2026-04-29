@@ -96,8 +96,8 @@ namespace ConviAppWeb.Models
         // User nav eliminada (sin EF)
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
-        public ICollection<ENPago> Pagos { get; set; } = new List<ENPago>();
-        public ICollection<ENDocumento> Documentos { get; set; } = new List<ENDocumento>();
+        public ICollection<ENPago> Pagos { get; set; }
+        public ICollection<ENDocumento> Documentos { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public bool IsActive() { return _status == "activo" && _endDate >= DateTime.Now; }
@@ -120,4 +120,5 @@ namespace ConviAppWeb.Models
         }
     }
 }
+
 

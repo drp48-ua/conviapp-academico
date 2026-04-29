@@ -31,10 +31,11 @@ namespace ConviAppWeb.Models
         public string? Icono { get { return _icono; } set { _icono = value; } }
 
         // â”€â”€â”€ NavegaciÃ³n â”€â”€â”€
-        public ICollection<ENGasto> Gastos { get; set; } = new List<ENGasto>();
+        public ICollection<ENGasto> Gastos { get; set; }
 
         // â”€â”€â”€ MÃ©todos de negocio â”€â”€â”€
         public int TotalGastos() { return Gastos.Count ?? 0; }
     }
 }
+
 
