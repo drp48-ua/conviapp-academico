@@ -7,3 +7,8 @@ obj/
 *.db-wal
 build*.log
 publish*.log
+
+3_Aplicacion/bin/
+3_Aplicacion/obj/
+*.db-shm
+*.db-wal
